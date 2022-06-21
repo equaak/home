@@ -1,24 +1,46 @@
-import logo from './logo.svg';
+import OutPut from './OutPut';
+import { useState } from 'react';
+import InputMask from 'react-input-mask';
+import Music from './Music';
+import Meal from './Meal';
 import './App.css';
 
+
+
 function App() {
+
+  const [name, setName] = useState('')
+  const [author, setAuthor] = useState('')
+  const [genre, setGenre] = useState('')
+  const [pages, setPages] = useState(0)
+  const [show, setShow] = useState(false)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="App">
+        <div>
+          <input onChange={event => setName(event.target.value)}></input>
+        </div>
+        <div>
+          <input onChange={event => setAuthor(event.target.value)}></input>
+        </div>
+        <div>
+          <input onChange={event => setGenre(event.target.value)}></input>
+        </div>
+        <div>
+          <input onChange={event => setPages(event.target.value)}></input>
+        </div>      
+        
+        
+        <button onClick={() => setShow(!show)}>
+          Show/Hide info
+        </button>        
+      </div>
+      {show ? <OutPut name={name} author={author} genre={genre} pages={pages}/> : null}
+      <Music />
+      <Meal></Meal>
+    </>
+    
   );
 }
 
